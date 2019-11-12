@@ -1,0 +1,19 @@
+Lab: Defining and Calling a Function
+Define a function named getOrderTotal(...), which takes two arguments and returns the sum as well as the original operands.
+Call the function and output the result
+
+<?php
+function getOrderTotal(int $operand1,int $operand2) {
+
+  $sum = $operand1 + $operand2;
+  
+  return array($sum,$operand1,$operand2);
+}
+
+$returnarray = getOrderTotal(1,3);
+foreach ($returnarray as $value) {
+  echo $value;
+  echo PHP_EOL;
+}
+
+
