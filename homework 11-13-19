@@ -41,3 +41,44 @@ function fib(int $lastseqno,int $nextseqno) {
 
 
 $fibno = fib(0,1);
+
+
+Lab: Two Functions
+Build two functions, one to get an array element of configuration, and one that takes an array and builds an HTML select/option list.
+getConfig('some config'), returns an array of allowed statuses
+htmlSelectHtml($config), returns a string contains an HTML <select> element with the status options. 
+
+Config file (config.php)
+<?php
+return [
+// The status options
+    'status_codes' => [
+        'default' => 'open',
+        'cancelled',
+        'held',
+        'invoiced',
+        'complete'
+    ]
+];
+
+Functions to get config
+<?php
+
+function getConfig($configFile, $config_key) {
+    $config = include __DIR__ . '/config/' . $configFile;
+    return $config[$config_key];
+}
+
+function htmlSelectHtml( $config ) {
+    $html = '<select>';
+      foreach ($config as $value) {
+        $html .=  '<option value="'.$value.'">'.$value.'</option>';
+      }
+    $html .= '</select>';
+    return $html;
+}
+
+$selected = getConfig('config.php','status_codes');
+$htmlout = htmlSelectHtml($selected);
+
+echo $htmlout;
