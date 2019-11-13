@@ -22,30 +22,22 @@ The Fibonacci sequence is a series of numbers in which each number is the sum of
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 
 Write a function that returns the nth number in a Fibbonacci sequence.
 <?php
-function fib($seqno) {
-  static $lastseqno;
+function fib(int $lastseqno,int $nextseqno) {
+	
+    echo $lastseqno;
+    echo PHP_EOL;
 
-  echo $seqno;
-  
-  
-  if ($seqno == 0) {
-    $lastseqno = 0;
-    $seqno = 1;
-  }
-  else {
-    $lastseqno = $seqno;
-    $seqno += $lastseqno;
-  }
+    $savedlastseqno = $lastseqno;
+    $lastseqno = $nextseqno;  
+    $nextseqno += $savedlastseqno;
 
-  echo PHP_EOL;
-  if ($seqno < 10) {
-    fib($seqno);  
-  }
-  else {
-    return $seqno;
-  }
+    if ($nextseqno < 100) {
+        fib($lastseqno,$nextseqno);  
+    }
+    else {
+      return;
+    }
 }
 
-$fibstart = 0;
-$fibno = fib($fibstart);
-echo $fibno;
+
+$fibno = fib(0,1);
