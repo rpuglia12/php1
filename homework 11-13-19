@@ -21,21 +21,28 @@ Lab: Recursive Function Exercise
 The Fibonacci sequence is a series of numbers in which each number is the sum of the previous two numbers, starting with 0.
 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 
 Write a function that returns the nth number in a Fibbonacci sequence.
-
 <?php
-function fib(&$seqno) {
-  if ($seqno = 0) {
-    $nextseqno = 1;
+function fib($seqno) {
+  static $lastseqno;
+
+  echo $seqno;
+  
+  
+  if ($seqno == 0) {
+    $lastseqno = 0;
+    $seqno = 1;
   }
   else {
-    $nextseqno += $seqno;
+    $lastseqno = $seqno;
+    $seqno += $lastseqno;
   }
-  echo $nextseqno;
-  if ($nextseqno < 10) {
-    fib($nextseqno);  
+
+  echo PHP_EOL;
+  if ($seqno < 10) {
+    fib($seqno);  
   }
   else {
-    return $nextseqno;
+    return $seqno;
   }
 }
 
