@@ -23,3 +23,46 @@ Display the result
 
 $file = file_get_contents(__DIR__.'/testfile.txt', true);
 echo $file;
+
+-----------------------------------------------------------------------------------
+
+Lab: file_put_contents()
+Using file_put_contents(), create some string content.
+Over write the contents of a file.
+Test and echo for success.
+
+$data = 'Overwriting file contents'."\n";
+file_put_contents(__DIR__.'/testfile.txt',$data);
+
+$file = file_get_contents(__DIR__.'/testfile.txt', true);
+echo $file;
+
+-------------------------------------------------------------------------------------
+
+Lab: Write Array Lab
+Write an array of text strings to a file.
+Open the file using fopen().
+read and output the third character from each line.
+
+<?php
+
+$dataarray =["Line number 1\n","Line number 2\n","Line number 3\n"];
+             
+$filehandle = fopen(__DIR__.'/testfile.txt', "w+");
+if ($filehandle == false) {
+    echo 'Error opening file!';
+}
+else {
+    fwrite($filehandle,serialize($dataarray));
+}
+fclose($filehandle);
+
+$file = file_get_contents(__DIR__.'/testfile.txt', true);
+$returndata = unserialize($file);
+foreach ($returndata as $value) {
+    echo $value;
+}
+
+--------------------------------------------------------------------------
+
+
