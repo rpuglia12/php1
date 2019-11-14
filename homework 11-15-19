@@ -1,0 +1,16 @@
+Lab: F-Type Functions
+Write an example of:
+Opening a file with error handling
+Write something to the file
+Close the file
+
+<?php
+
+$filehandle = fopen(__DIR__.'/testfile.txt', "a");
+if ($filehandle == false) {
+    echo 'Error opening file!';
+}
+else {
+    fwrite($filehandle,'A line of text'."\n");
+}
+fclose($filehandle);
