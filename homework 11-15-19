@@ -14,3 +14,12 @@ else {
     fwrite($filehandle,'A line of text'."\n");
 }
 fclose($filehandle);
+
+-----------------------------------------------------------------------------
+
+Lab: file_get_contents()
+Using file_get_contents(), get the contents of a file
+Display the result
+
+$file = file_get_contents(__DIR__.'/testfile.txt', true);
+echo $file;
