@@ -46,6 +46,8 @@ read and output the third character from each line.
 
 <?php
 
+<?php
+
 $dataarray =["Line number 1\n","Line number 2\n","Line number 3\n"];
              
 $filehandle = fopen(__DIR__.'/testfile.txt', "w+");
@@ -60,7 +62,8 @@ fclose($filehandle);
 $file = file_get_contents(__DIR__.'/testfile.txt', true);
 $returndata = unserialize($file);
 foreach ($returndata as $value) {
-    echo $value;
+    echo substr($value,2,1);
+    echo PHP_EOL;
 }
 
 --------------------------------------------------------------------------
