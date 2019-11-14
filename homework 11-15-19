@@ -65,4 +65,10 @@ foreach ($returndata as $value) {
 
 --------------------------------------------------------------------------
 
+Lab: Read Directories
+Read the directories and files in the class project root and output the following:
+File Name
+File Size
+Number of lines in the file
+
 
