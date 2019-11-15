@@ -74,4 +74,9 @@ File Name
 File Size
 Number of lines in the file
 
+<?php
 
+foreach (glob('*.*') as $filename) {
+    $lines = file($filename);    
+    echo 'File Name: ' . $filename . ' - File Size: ' . filesize($filename) . ' - #Lines: ' . count($lines) . "\n";
+}   
