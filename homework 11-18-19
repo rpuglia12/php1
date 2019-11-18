@@ -9,8 +9,9 @@ a submit button
 <html>
 <title> HTML homework assignment </title>
 <form>
-   User Name:<input type="text" name="username"><br>
+  User Name:<input type="text" name="username"><br>
   Password:<input type="password" name="pswd"><br><br>
+  <?php echo 'I am lost at what a dynamic attribute for the input tags should be.<br>'?>
   <input type="submit" value="Submit">
 </form>                                                                                                                      
 </html>      
@@ -28,6 +29,7 @@ $html .= '<title> HTML homework assignment </title>';
 $html .= '<form>';
 $html .= 'User Name:<input type="text" name="username"><br>';
 $html .= 'Password:<input type="password" name="pswd"><br><br>';
+$html .=  'I am lost at what a dynamic attribute for the input tags should be.<br>';
 $html .= '<input type="submit" value="Submit">';
 $html .= '</form>';
 $html .= '</html>';
