@@ -1,0 +1,24 @@
+Lab: Embedded PHP
+Build an standard HTML form with embedded PHP
+Account for
+form tag attributes
+input tags for both username and password
+dynamic attributes for each input tags
+a submit button
+
+<html>
+<title> HTML homework assignment </title>
+<form>
+   User Name:<input type="text" name="username"><br>
+  Password:<input type="password" name="pswd"><br><br>
+  <input type="submit" value="Submit">
+</form>                                                                                                                      
+</html>      
+
+
+
+Lab: PHP Form String
+Only using PHP, build a simple login form. 
+Output the HTML to the browser 
+// Starting Code
+$html = '<form';
