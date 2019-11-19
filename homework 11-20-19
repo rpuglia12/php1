@@ -57,16 +57,18 @@ if (!isset($_POST['username'])) {
 }
 
 
+
 // validate email address if prior edits passed - must be entered
 if ($points == $expected) {
     $points = 0;
     $expected = 1;
     $email_addr = '';
-    $message  = '';
     if (empty($_POST['emailaddr'])) {
         echo '<br><br>Email address is not set.';
     } else {
         $points++;
+        // filter password
+        $email_addr = strip_tags($_POST['emailaddr']);
     }
 }
 
