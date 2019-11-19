@@ -1,0 +1,103 @@
+Lab: Secure Input Handling
+Create a script that takes input from a login form (username, password, and email address).
+Filter and validate all inputs
+Display a message for both invalid and valid input.
+
+login.php file (form)
+
+<!DOCTYPE html>
+<html>
+<head>
+<title> User, Password and Email Form </title>
+</head>
+<body>
+<form action="loginsubmit.php" method="post">
+  User Name:<input type="text" name="username" size=10 placeholder="Enter username." title="Username must be alphanumeric, no special characters."><br><br>
+  Password:<input type="password" name="pswd" size=20><br><br>
+  Email Address:<input type="email" name="emailaddr" size=64 placeholder="Enter email address." title="Enter a valid email address."><br><br>
+  <input type="submit" value="Submit">
+</form>                                                                                                                      
+</body>
+</html>      
+
+
+loginsubmit.php file (form validation)
+
+<?php
+$points = 0;
+$expected = 3;
+$username = '';
+$message  = '';
+
+// validate username - must be entered
+if (!isset($_POST['username'])) {
+    echo '<br><br>Username is not set.';
+} else {
+    $points++;
+    // length must be 6 - 10 characters
+    if (strlen($_POST['username']) >= 6 and strlen($_POST['username']) <= 10) {
+	$points++;
+    } else {
+	$message .= 'Invalid length.  ' . PHP_EOL;
+    }
+    // alphanumeric check
+    if (ctype_alnum($_POST['username'])) {
+	$points++;
+    } else {
+	$message .= 'Name contains non alphanumerics.  ';
+    }
+    if ($points == $expected) {
+	// filter username
+	$username = strip_tags($_POST['username']);
+    } else {
+        // escape any suspect output and display message
+        echo 'Username: ' . htmlspecialchars($username);
+        echo '<br><br>Message: ' . $message;
+    }
+}
+
+
+// validate email address if prior edits passed - must be entered
+if ($points == $expected) {
+    $points = 0;
+    $expected = 1;
+    $email_addr = '';
+    $message  = '';
+    if (empty($_POST['emailaddr'])) {
+        echo '<br><br>Email address is not set.';
+    } else {
+        $points++;
+    }
+}
+
+// validate password if prior edits passed
+if ($points == $expected) {
+    $points   = 0;
+    $expected = 3;
+    $pswd = '';
+    // password must be entered
+    if (!isset($_POST['pswd'])) {
+        echo 'Password is not set.';
+    } else {
+        $points++;
+        // length must be 8 - 20 characters
+        if (strlen($_POST['pswd']) >= 8 and strlen($_POST['pswd']) <= 20) {
+	    $points++;
+        }
+        // uppercase, lowercase, number and special character check
+        $uppercase = preg_match('@[A-Z]@', $_POST['pswd']);
+        $lowercase = preg_match('@[a-z]@', $_POST['pswd']);
+        $number = preg_match('@[0-9]@', $_POST['pswd']);
+        $specialChars = preg_match('@[^\w]@', $_POST['pswd']);
+        if($uppercase && $lowercase && $number && $specialChars) {
+            $points++;
+        }
+        if ($points == $expected) {
+    	    // filter password
+            $pswd = strip_tags($_POST['pswd']);
+	    echo 'Valid Login.';
+        } else {
+            echo 'Invalid Login.';
+        }
+    }
+}
