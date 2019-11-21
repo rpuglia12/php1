@@ -1,0 +1,18 @@
+Lab: SQL
+Using the phpMyAdmin web interface, or the SQL entry editor.
+
+Create a new database called Accounts.
+create database accounts;
+
+Create a new table called profile with columns for id, avatar, and language.
+create table profile (id varchar(20), avatar longblob, language varchar(20));
+
+Insert three records into the new table.
+insert into profile values ('rich','010101010','english');
+insert into profile values ('doug','111111111','thai');
+insert into profile values ('clark','000000001','english');
+
+Retrieve the second record
+select * from profile where row_number() = 2;
+
+
