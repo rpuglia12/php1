@@ -16,3 +16,39 @@ Retrieve the second record
 select * from profile where row_number() = 2;
 
 
+--------------------------------------------------------------
+
+Lab: Putting It Together
+Building upon the previous exercises and examples, perform the following:
+sprintf(), mysqli_connect(), mysqli_query(), mysqli_fetch_row(), mysqli_close() 
+* Consider using mysqli_prepare() and mysqli_execute() instead of using sprintf() to build the SQL statement
+Get a database connection.
+Format an update query using the sprintf() function.
+Update the accounts database, profile table for the third row changing the image and language values.
+Select from the profile table the updated row and dump it to output.
+Close the connection.
+
+<?php
+
+// connect to the DB
+$conn = mysqli_connect('127.0.0.1', 'vagrant', 'vagrant', 'accounts');
+
+// prepare sql statment
+$stmt = $conn->prepare("update profile set avatar = ?,language = ? where id = ?");
+$stmt->bind_param('bss',$avatar, $language, $id);
+
+//set parameter markers and execute sql
+$id = 'clark';
+$avatar = '011';
+$language = 'french';
+$stmt->execute();
+
+// Fetches a row a data based on the query
+$result = mysqli_query($conn, "select * from profile where id = 'clark'");
+// Fetches a row a data based on the query
+while ( $row = mysqli_fetch_assoc($result)) {
+    var_dump($row);
+}
+
+// close
+mysqli_close($conn);
